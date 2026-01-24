@@ -2,14 +2,28 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from serial_link import SerialLink
 import time
+import os
+import sys
+import ctypes
+from PIL import Image, ImageTk
 
 # --- Constants ---
-WINDOW_TITLE = "Linear Stage Controller"
+WINDOW_TITLE = "Blade Runner"
 WINDOW_SIZE = "500x600" # Increased height
 MAX_TRAVEL = 45.0
 MIN_TRAVEL = 0.0
 MAX_SPEED_LIMIT = 30.0
 MAX_ACCEL_LIMIT = 1000.0 # Safety cap
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.dirname(__file__)
+
+    return os.path.join(base_path, relative_path)
 
 class LinearStageApp:
     def __init__(self, root):
@@ -17,6 +31,33 @@ class LinearStageApp:
         self.root.title(WINDOW_TITLE)
         self.root.geometry(WINDOW_SIZE)
         
+    # Set Icon
+    # Set Icons
+        try:
+            base_path = os.path.dirname(__file__)
+            images = []
+
+            # 1. Taskbar Icon (Large) -> logo.png
+            logo_path = resource_path("logo.png")
+            if os.path.exists(logo_path):
+                img_logo = Image.open(logo_path)
+                images.append(ImageTk.PhotoImage(img_logo)) # High res for taskbar
+
+            # 2. Title Bar Icon (Small) -> icon.png
+            icon_path = resource_path("icon.png")
+            if os.path.exists(icon_path):
+                # Resize specifically for title bar preference
+                img_icon = Image.open(icon_path).resize((16, 16), Image.LANCZOS)
+                images.append(ImageTk.PhotoImage(img_icon))
+
+            if images:
+                self._icon_refs = images # Keep reference
+                # Tkinter will choose the best size from the provided list
+                self.root.iconphoto(False, *images)
+                
+        except Exception as e:
+            print(f"Icon Error: {e}")
+
         self.serial = SerialLink(logger=self.log_message) # Pass logger
         self.is_homed = False # Safety flag
         
@@ -26,6 +67,12 @@ class LinearStageApp:
         
         self._init_ui()
         self._start_update_loop()
+
+    # ... (rest of methods)
+
+# ...
+
+
 
     def _init_ui(self):
         # 1. Connection Frame
@@ -110,6 +157,9 @@ class LinearStageApp:
         
         ttk.Button(set_frame, text="Set", command=self._cmd_set_params).pack(side="left")
 
+        # 7. Credits (Packed bottom to ensure visibility)
+        ttk.Label(self.root, text="Created by Changhyun Hwang (2026)", font=("Arial", 8), foreground="gray").pack(side="bottom", anchor="e", padx=10, pady=(5, 5))
+
         # 6. Terminal Log
         log_frame = ttk.LabelFrame(self.root, text="Terminal Log", padding=10)
         log_frame.pack(fill="both", expand=True, padx=10, pady=5)
@@ -117,9 +167,12 @@ class LinearStageApp:
         self.txt_log = tk.Text(log_frame, height=10, state="disabled", font=("Consolas", 9))
         self.txt_log.pack(fill="both", expand=True)
 
+
+
         # Initial State
-        self._update_ui_state(connected=False)
         self._update_settings_display() # Default display
+        
+
 
     def log_message(self, message):
         """Append message to log widget."""
@@ -148,20 +201,14 @@ class LinearStageApp:
                 # Ideally we send defaults on connect or rely on user to Set.
                 # Let's send our defaults to sync
                 self._cmd_set_params(silent=True)
-                self._update_ui_state(connected=True)
             else:
                 messagebox.showerror("Error", f"Failed to connect to {port}")
         else:
             self.serial.disconnect()
             self.btn_connect.config(text="Connect")
-            self._update_ui_state(connected=False)
             self.is_homed = False
 
-    def _update_ui_state(self, connected):
-        state = "normal" if connected else "disabled"
-        # Disable all motion controls initially if connected but not homed
-        # But we need HOME button enabled.
-        pass
+
 
     def _update_settings_display(self):
         if self.serial.is_connected:
@@ -266,17 +313,19 @@ class LinearStageApp:
            self.lbl_status.config(foreground="red")
         
         # Toggle buttons based on state
-        btns_to_toggle = [self.btn_jog_neg, self.btn_jog_pos, self.control_frame.winfo_children()[2].winfo_children()[2]] # Go button
-        
-        if self.serial.is_connected: 
-            # Unlock Home button always
-            pass
-        else:
+        if not self.serial.is_connected: 
             self.is_homed = False
 
         self.root.after(100, self._start_update_loop)
 
 if __name__ == "__main__":
+    # Set Taskbar Icon (Windows)
+    try:
+        appid = u'antigravity.bladerunner.linearstage.v3' 
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(appid)
+    except Exception:
+        pass
+
     root = tk.Tk()
     app = LinearStageApp(root)
     root.mainloop()
