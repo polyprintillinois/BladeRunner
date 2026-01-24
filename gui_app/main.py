@@ -8,7 +8,7 @@ import ctypes
 from PIL import Image, ImageTk
 
 # --- Constants ---
-WINDOW_TITLE = "Blade Runner"
+WINDOW_TITLE = "BladeRunner"
 WINDOW_SIZE = "500x600" # Increased height
 MAX_TRAVEL = 45.0
 MIN_TRAVEL = 0.0

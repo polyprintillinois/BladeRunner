@@ -1,8 +1,8 @@
-# Blade Runner - Linear Stage Controller
+# BladeRunner - Linear Stage Controller
 
-**Blade Runner** is a high-precision linear stage control system powered by an Arduino firmware and a Python Tkinter GUI. It allows for safe, user-friendly control of a stepper motor-driven linear actuator with adjustable speed and acceleration.
+**BladeRunner** is a high-precision linear stage control system powered by an Arduino firmware and a Python Tkinter GUI. It allows for safe, user-friendly control of a stepper motor-driven linear actuator with adjustable speed and acceleration.
 
-![Blade Runner Icon](gui_app/logo.png)
+![BladeRunner Icon](gui_app/logo.png)
 
 ## Features
 
@@ -32,7 +32,7 @@ No Python installation is required.
 1.  Install **Python 3.x**.
 2.  Install dependencies:
     ```bash
-    pip install pyserial pillow
+    pip install -r requirements.txt
     ```
 3.  Run the application:
     ```bash
@@ -71,5 +71,5 @@ Arduino_Linear_Stage/
 ```
 
 ---
-**Blade Runner Controller v3.0**
+**BladeRunner Controller v3.0**
 Created by Changhyun Hwang (2026)
