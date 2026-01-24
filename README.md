@@ -16,7 +16,7 @@
 
 - **Microcontroller**: Arduino Uno R4 Minima (or compatible)
 - **Driver**: TMC2209 (UART or DIR/STEP mode)
-- **Motor**: NEMA 17 Stepper (e.g., Pancake 17HS08-1004S)
+- **Motor**: NEMA 17 Stepper (e.g., StepperOnline 17HS08-1004S)
 - **Actuator**: Linear Rail/Stage (45mm travel)
 
 ## Installation & Usage
