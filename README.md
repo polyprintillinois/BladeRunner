@@ -25,7 +25,7 @@
 - **Homing Requirement**: The system **must be homed** every time it connects. Movement commands are disabled until homing is complete.
 - **Blocking Homing**: The homing sequence is *blocking* on the Arduino side. It will run until the switch is hit or the 20-second timeout occurs. During this specific operation, other serial commands may be delayed, though the Emergency Stop logic inside the loop attempts to catch interrupts.
 - **Emergency Stop**: Pressing the E-Stop button halts the motor immediately and puts the system in an error state. You must re-home to resume operation.
-- **Speed & Acceleration Limits**: Max Speed is capped at **30 mm/s** and Max Acceleration at **1000 mm/s²** to prevent stalling or damage to the pancake stepper motor.
+- **Speed & Acceleration Limits**: Max Speed is capped at **30 mm/s** and Max Acceleration at **1000 mm/s²** to prevent stalling or damage to the stepper motor.
 
 ## Installation & Usage
 
