@@ -19,14 +19,21 @@
 - **Motor**: NEMA 17 Stepper (e.g., StepperOnline 17HS08-1004S)
 - **Actuator**: Linear Rail/Stage (45mm travel)
 
+## ⚠️ Limitations & Safety
+
+- **Travel Limit**: The system is hard-coded for a **45mm** max travel. Attempting to go beyond this via the GUI is blocked, but ensure your physical stage matches this spec.
+- **Homing Requirement**: The system **must be homed** every time it connects. Movement commands are disabled until homing is complete.
+- **Blocking Homing**: The homing sequence is *blocking* on the Arduino side. It will run until the switch is hit or the 20-second timeout occurs. During this specific operation, other serial commands may be delayed, though the Emergency Stop logic inside the loop attempts to catch interrupts.
+- **Emergency Stop**: Pressing the E-Stop button halts the motor immediately and puts the system in an error state. You must re-home to resume operation.
+
 ## Installation & Usage
 
 ### Method 1: Executable (Recommended for Windows)
 No Python installation is required.
 
-1.  Connect your Arduino.
-2.  Go to the `dist` folder.
-3.  Run **`BladeRunner.exe`**.
+1.  Go to the **[Releases](../../releases)** page of this repository.
+2.  Download the latest **`BladeRunner.exe`** from the Assets section.
+3.  Connect your Arduino and run the downloaded file.
 
 ### Method 2: Running from Source (Python)
 1.  Install **Python 3.x**.
