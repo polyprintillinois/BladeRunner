@@ -79,5 +79,5 @@ Arduino_Linear_Stage/
 ```
 
 ---
-**BladeRunner Controller v3.0**
+**BladeRunner Controller v1.0.0**
 Created by Changhyun Hwang (2026)
