@@ -64,8 +64,6 @@ No Python installation is required.
 
 ```text
 Arduino_Linear_Stage/
-├── dist/                   # Contains the compiled executable
-│   └── BladeRunner.exe     # <--- RUN THIS
 ├── firmware/
 │   └── stepper_controller.ino  # Arduino Firmware
 ├── gui_app/
