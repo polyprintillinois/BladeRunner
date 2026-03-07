@@ -14,7 +14,7 @@ const float HOMING_SPEED_MM_S = 5.0;
 const float HOMING_BACKOFF_MM = 2.0;
 
 // User settings (Persisted)
-float userMaxSpeed = 50.0 * stepsPerMm;
+float userMaxSpeed = 5.0 * stepsPerMm;
 float userAcceleration = 500.0 * stepsPerMm; // Modified to 500 based on user preference
 
 AccelStepper stepper(AccelStepper::DRIVER, stepPin, dirPin);

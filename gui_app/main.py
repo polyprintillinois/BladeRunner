@@ -233,7 +233,7 @@ class LinearStageApp:
         try:
             val = float(self.ent_abs.get())
             if not (MIN_TRAVEL <= val <= MAX_TRAVEL):
-                messagebox.showwarning("Range Error", f"Target {val} is out of bounds (0-40).")
+                messagebox.showwarning("Range Error", f"Target {val} is out of bounds (0-45).")
                 return
             self.serial.send_command(f"G{val}")
         except ValueError:
