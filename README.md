@@ -14,8 +14,7 @@ To assemble, wire, and operate the system from scratch, use the Hardware Assembl
 ## Features
 
 - **Precise Control**: Move to absolute positions or jog in relative steps.
-- **Dual Icon System**: Distinct high-resolution icons for the taskbar and window title bar.
-- **Safety First**: Blocking homing routine, emergency stop, and software travel limits from 0 to 45 mm.
+- **Reliable Operation**: Blocking homing routine, emergency stop, and software travel limits from 0 to 45 mm.
 - **Adjustable Parameters**: Real-time control of speed (mm/s) and acceleration (mm/s^2).
 - **Robust Communication**: Custom serial protocol with error handling and status feedback.
 
