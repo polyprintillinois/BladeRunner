@@ -14,7 +14,7 @@ To assemble, wire, and operate the system from scratch, use the Hardware Assembl
 ## Features
 
 - **Precise Control**: Move to absolute positions or jog in relative steps.
-- **Reliable Operation**: Blocking homing routine, emergency stop, and software travel limits from 0 to 45 mm.
+- **Reliable Operation**: Blocking homing routine, software stop (decelerated via `AccelStepper.stop()`), and software travel limits from 0 to 45 mm.
 - **Adjustable Parameters**: Real-time control of speed (mm/s) and acceleration (mm/s^2).
 - **Robust Communication**: Custom serial protocol with error handling and status feedback.
 
@@ -29,8 +29,8 @@ To assemble, wire, and operate the system from scratch, use the Hardware Assembl
 
 - **Travel Limit**: The controller enforces a 45 mm software travel limit. Ensure the physical stage matches this usable range.
 - **Homing Requirement**: The system must be homed after connecting before motion commands are enabled.
-- **Blocking Homing**: The homing sequence blocks on the Arduino side until the limit switch is hit or the 20-second timeout expires. Emergency stop is still checked during this routine.
-- **Emergency Stop**: Pressing the E-stop halts the motor immediately and puts the system in a stopped state. Re-home before resuming motion.
+- **Blocking Homing**: The homing sequence blocks on the Arduino side until the limit switch is hit or the 20-second timeout expires. The software-stop command is still checked during this routine.
+- **Software Stop**: The `EMERGENCY STOP` button requests a software stop, decelerated via `AccelStepper.stop()`; it does not electrically remove motor power. Re-home before resuming motion.
 - **Speed and Acceleration Limits**: The GUI caps speed at 30 mm/s and acceleration at 1000 mm/s^2 to reduce the chance of stalls or mechanical damage.
 
 ## Installation and Usage
@@ -70,7 +70,7 @@ python gui_app/main.py
 2. **Home**: Click `HOME AXIS (Required)` to establish the zero position.
 3. **Move**: Enter a target position in millimeters and click `GO`, or use the jog buttons.
 4. **Set Parameters**: Adjust speed and acceleration as needed.
-5. **Emergency Stop**: Press `EMERGENCY STOP` to halt motion immediately.
+5. **Software Stop**: Press `EMERGENCY STOP` to request a decelerated software stop via `AccelStepper.stop()`.
 
 ## Project Structure
 
@@ -95,6 +95,10 @@ BladeRunner/
 |-- BladeRunner.spec             # PyInstaller spec file
 `-- README.md
 ```
+
+## License
+
+BladeRunner is released under the [MIT License](LICENSE).
 
 ---
 **BladeRunner Controller v1.0.1**  

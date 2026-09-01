@@ -52,6 +52,10 @@ The firmware currently defines:
 - `HOMING_SPEED_MM_S = 5.0`
 - `HOMING_BACKOFF_MM = 2.0`
 
+### Motion Calibration
+
+`stepsPerMm = 203.17` was calibrated against commanded `6.000 mm` moves and independently verified optically (`202.6 ± 1.0 steps/mm`).
+
 ### Startup Behavior
 
 At startup, the firmware:
@@ -91,7 +95,7 @@ Each line from serial is parsed as:
 | `V` | `V5` | Set max speed in mm/s |
 | `A` | `A500` | Set acceleration in mm/s^2 |
 | `H` | `H` | Start homing |
-| `S` | `S` | Emergency stop |
+| `S` | `S` | Request a software stop (decelerated via `AccelStepper.stop()`) |
 
 ### Homing Behavior
 
@@ -104,7 +108,7 @@ Flow:
 3. The loop continues until:
    - the switch is triggered, or
    - the 20-second timeout is reached, or
-   - an emergency stop command is received
+   - a software-stop command is received
 4. On successful switch hit, the position is zeroed
 5. The stage backs off by `2.0 mm`
 6. The position is zeroed again
@@ -115,7 +119,7 @@ Timeout result:
 
 - `ERROR:HOMING_TIMEOUT`
 
-Emergency-stop-during-homing result:
+Software-stop-during-homing result (the protocol string retains its original name):
 
 - `STATUS:EMERGENCY_STOP_DURING_HOMING`
 
@@ -159,7 +163,7 @@ The GUI:
 - Sends motion and parameter commands
 - Displays live position and status
 - Prevents motion until homing is complete
-- Provides an operator-visible emergency stop button
+- Provides an operator-visible software-stop control labeled `EMERGENCY STOP`
 
 ### Connection Behavior
 
@@ -213,13 +217,13 @@ Current safety behavior includes:
 - software travel limit in firmware
 - GUI-side move validation
 - mandatory homing before motion
-- emergency stop command
+- software stop, decelerated via `AccelStepper.stop()`
 - homing timeout
 
 Current limitations:
 
 - Firmware does not independently clamp incoming speed or acceleration to the same limits as the GUI
-- Homing is blocking and occupies the Arduino loop until completion, timeout, or emergency stop
+- Homing is blocking and occupies the Arduino loop until completion, timeout, or a software-stop command
 - The system assumes the configured `stepsPerMm` matches the physical drive train
 
 ## Build and Run
@@ -258,4 +262,3 @@ Use it when generating a Windows executable build.
 - Add firmware-side clamps for speed and acceleration
 - Add explicit driver configuration notes for the Adafruit TMC2209 breakout
 - Document motor coil wiring with the exact wire color mapping used in the build
-- Add calibration notes for verifying `stepsPerMm`
