@@ -1,6 +1,6 @@
 # BladeRunner - Linear Stage Controller
 
-This repository accompanies **Hwang, Elangovan, Damron, Kwok, Jeon & Diao, "Democratizing Lab Automation through Multi-Agent-Assisted Design and 3D Printing"** (submitted, 2026). Archived release: Zenodo DOI [to be added]. Code is released under the MIT licence; printed-part designs (STL) and documentation may be reused under the same terms with attribution.
+This repository accompanies **Hwang, Elangovan, Damron, Kwok, Jeon & Diao, "Democratizing Lab Automation through Multi-Agent-Assisted Design and 3D Printing"** (submitted, 2026). Archived release: [Zenodo DOI 10.5281/zenodo.22695750](https://doi.org/10.5281/zenodo.22695750). Code is released under the MIT licence; printed-part designs (STL) and documentation may be reused under the same terms with attribution.
 
 **BladeRunner** is a high-precision linear stage control system powered by Arduino firmware and a Python Tkinter GUI. It provides safe, user-friendly control of a stepper-driven linear actuator with adjustable speed and acceleration.
 
