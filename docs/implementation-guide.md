@@ -4,10 +4,10 @@
 
 BladeRunner is split into two main software components:
 
-- Arduino firmware in [firmware/stepper_controller/stepper_controller.ino](C:/Users/chwang12/PycharmProjects/BladeRunner/firmware/stepper_controller/stepper_controller.ino)
-- Python Tkinter GUI in [gui_app/main.py](C:/Users/chwang12/PycharmProjects/BladeRunner/gui_app/main.py)
+- Arduino firmware in [firmware/stepper_controller/stepper_controller.ino](../firmware/stepper_controller/stepper_controller.ino)
+- Python Tkinter GUI in [gui_app/main.py](../gui_app/main.py)
 
-Serial communication is implemented in [gui_app/serial_link.py](C:/Users/chwang12/PycharmProjects/BladeRunner/gui_app/serial_link.py).
+Serial communication is implemented in [gui_app/serial_link.py](../gui_app/serial_link.py).
 
 ## Repository Layout
 

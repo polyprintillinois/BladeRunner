@@ -1,0 +1,53 @@
+{
+  "title": "BladeRunner: a compact 3D-printed blade-coating stage for in situ thin-film deposition (firmware, GUI, CAD/STL, documentation)",
+  "description": "This repository accompanies the manuscript \"Democratizing Lab Automation through Multi-Agent-Assisted Design and 3D Printing\" (Hwang et al., submitted to Digital Discovery, 2026). BladeRunner is a low-cost, Arduino-controlled lead-screw linear stage that fits inside a stereomicroscope bay for in situ meniscus-guided coating. The repository contains the Arduino firmware, the Python/Tkinter host GUI and its standalone build configuration, STL files for all printed parts, the bill of materials, and assembly and implementation guides.",
+  "creators": [
+    {
+      "name": "Hwang, Changhyun",
+      "affiliation": "University of Illinois Urbana-Champaign",
+      "orcid": "0000-0003-1720-7852"
+    },
+    {
+      "name": "Elangovan, Kavinraaj Ella",
+      "affiliation": "University of Illinois Urbana-Champaign"
+    },
+    {
+      "name": "Damron, Alec M.",
+      "affiliation": "University of Illinois Urbana-Champaign"
+    },
+    {
+      "name": "Kwok, Justin J.",
+      "affiliation": "University of Illinois Urbana-Champaign"
+    },
+    {
+      "name": "Jeon, Sanghyun",
+      "affiliation": "University of Illinois Urbana-Champaign"
+    },
+    {
+      "name": "Diao, Ying",
+      "affiliation": "University of Illinois Urbana-Champaign",
+      "orcid": "0000-0002-8984-0051"
+    }
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "keywords": [
+    "lab automation",
+    "blade coating",
+    "meniscus-guided coating",
+    "open hardware",
+    "3D printing",
+    "Arduino",
+    "self-driving laboratory",
+    "thin films"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/polyprintillinois/BladeRunner",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ],
+  "notes": "Code, design files and documentation released with the manuscript; see the repository README for build and usage instructions."
+}

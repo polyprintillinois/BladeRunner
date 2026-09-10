@@ -24,7 +24,7 @@ This guide covers:
 
 ## 3D-Printed Parts
 
-Print all files in [parts](C:/Users/chwang12/PycharmProjects/BladeRunner/parts) before assembly.
+Print all files in [parts](../parts/) before assembly.
 
 | File | Purpose |
 | --- | --- |
@@ -82,7 +82,7 @@ Current usage mapping:
 
 ### 1. Print and prepare parts
 
-1. Print all STL files in [parts](C:/Users/chwang12/PycharmProjects/BladeRunner/parts).
+1. Print all STL files in [parts](../parts/).
 2. Install M3 heat-set inserts where required by the printed parts.
 3. Confirm that the motor, rail, and printed interfaces fit without interference.
 
